@@ -291,6 +291,31 @@ MonoBehaviour:
   screenFlashPrefab: {fileID: 1916082449573456, guid: 662ce75f50f06664bbd2499cde30c714,
     type: 2}
   test: 
+  danceMovements_library:
+  - dance_name: 
+    dance_input: 
+    dance_power: 0
+    dance_speed: 0
+    dance_range: 0
+    dance_sprite: {fileID: 0}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
+  - dance_name: 
+    dance_input: 
+    dance_power: 0
+    dance_speed: 0
+    dance_range: 0
+    dance_sprite: {fileID: 0}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
+  - dance_name: 
+    dance_input: 
+    dance_power: 0
+    dance_speed: 0
+    dance_range: 0
+    dance_sprite: {fileID: 0}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
 --- !u!114 &1738145787
 MonoBehaviour:
   m_ObjectHideFlags: 0
