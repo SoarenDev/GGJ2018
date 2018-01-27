@@ -5,12 +5,14 @@ using UnityEngine;
 public class test : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		print("test wess;k encore cébon");
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		
 	}
 }
