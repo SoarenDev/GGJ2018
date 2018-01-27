@@ -9,17 +9,34 @@ public class GameManager : MonoBehaviour {
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject		player;
+	public		GameObject		screenFlashPrefab;
 
 [Space(10)][Header("Usual variable")]
 	public		string			test;
 
+    void Awake() 
+	{
+        Application.targetFrameRate = 60;
+    }
+
 	void Start () 
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
-	}
-	
-
-	void Update () {
 		
 	}
+
+	void Update () 
+	{
+		
+	}
+
+
+	public void DoScreenFlash(Color flashColor)
+	{
+		GameObject instance;
+		instance = Instantiate(screenFlashPrefab, new Vector2 (0,0), Quaternion.identity);
+		instance.GetComponent<SpriteRenderer>().color = flashColor;
+		Destroy(instance, 1);
+	}
+
 }
