@@ -5,14 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 [Space(10)][Header("Scripts binding")]
-	public		GameManager		gameManager;
+	public		GameManager			gameManager;
+	public		MusicRythm			rythmScript;
 
 [Space(10)][Header("Objects bindings")]
-	public		GameObject		player;
-	public		GameObject		screenFlashPrefab;
+	public		GameObject			player;
+	public		GameObject			screenFlashPrefab;
 
 [Space(10)][Header("Usual variable")]
-	public		string			test;
+	public		string				test;
+
+[Space(10)][Header("References library")]
+	public		List<DanceMovement>	danceMovements_library;
 
     void Awake() 
 	{

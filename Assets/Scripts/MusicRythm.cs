@@ -27,14 +27,14 @@ public class MusicRythm : MonoBehaviour {
 		// | = = = BEAT MANAGER = = = |
 
 		// Incrémentation de du compteur horloge
-		beatClock += 1.000f * Time.fixedDeltaTime;
-		beatInput += 1.000f * Time.fixedDeltaTime;
+		beatClock += 1.000f * Time.deltaTime;
+		beatInput += 1.000f * Time.deltaTime;
 
 		// Beat clock
 		if (beatClock > beatInterval)
 		{
 			// print("BEAT!");
-			// gameManager.DoScreenFlash(new Color(0.8f, 0.3f, 0.8f));
+			// gameManager.DoScreenFlash(new Color(0.6f, 0, 0.6f));
 			beatClock	= 0f;
 		}
 
@@ -49,28 +49,6 @@ public class MusicRythm : MonoBehaviour {
 
 	void Update () 
 	{
-		
-		// | = = = CHECK INPUT PAR RAPPORT AU BEAT = = = |
-
-		if (Input.GetKeyDown("joystick button 0") == true)
-		{
-			// print("INPUT");
-			// print("Décalage : " + (beatInput));
-			if (Mathf.Abs(beatInput) < beatInterval * (errorAccept/2))
-			{
-				// print("IsOk");
-				gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
-			} 
-			else if (Mathf.Abs(beatInput) < beatInterval * errorAccept)
-			{
-				// print("IsOk");
-				gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
-			}
-			else
-			{
-				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
-			}
-		}
 
 	}
 

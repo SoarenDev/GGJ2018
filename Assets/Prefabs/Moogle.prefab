@@ -96,9 +96,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5af6dff472919442b6ca8b0ad4165ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  gameManager: {fileID: 0}
+  danceGauche_sprite: {fileID: 0}
+  danceHaut_sprite: {fileID: 0}
+  danceDroite_sprite: {fileID: 0}
+  danceMovementsList: []
+  activeDanceMovement:
+    dance_name: 
+    dance_power: 0
+    dance_speed: 0
+    dance_range: 0
+    dance_sprite: {fileID: 0}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
   characterAnimator: {fileID: 95308183874082242}
   walkAnimation: {fileID: 0}
+  speed: 0.2
+  isMovementOn: 1
 --- !u!212 &212983414591012784
 SpriteRenderer:
   m_ObjectHideFlags: 1

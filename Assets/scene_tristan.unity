@@ -287,10 +287,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  rythmScript: {fileID: 1738145787}
   player: {fileID: 0}
   screenFlashPrefab: {fileID: 1916082449573456, guid: 662ce75f50f06664bbd2499cde30c714,
     type: 2}
   test: 
+  danceMovements_library:
+  - dance_name: Dance_Gauche
+    dance_power: 0
+    dance_speed: 10
+    dance_range: 0
+    dance_sprite: {fileID: 21300016, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
+  - dance_name: Dance_Haut
+    dance_power: 0
+    dance_speed: 0
+    dance_range: 10
+    dance_sprite: {fileID: 21300034, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
+  - dance_name: Dance_Droite
+    dance_power: 10
+    dance_speed: 0
+    dance_range: 0
+    dance_sprite: {fileID: 21300092, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
+    dance_uiIndicator: {fileID: 0}
+    dance_sound: {fileID: 0}
 --- !u!114 &1738145787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +331,7 @@ MonoBehaviour:
   beatInterval: 0
   beatClock: 0
   beatInput: 0
-  errorAccept: 0.25
+  errorAccept: 0.3
 --- !u!82 &1738145788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -318,7 +341,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: de053d37c1d38c54e9755ffd91cd280b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82c7b2c129be67d40bc200684c6f5b54, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -443,6 +466,11 @@ Prefab:
       propertyPath: characterAnimator
       value: 
       objectReference: {fileID: 528875944}
+    - target: {fileID: 114114557909780474, guid: fe8aedffa6d23724baa4a1b06fc81cb7,
+        type: 2}
+      propertyPath: isMovementOn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe8aedffa6d23724baa4a1b06fc81cb7, type: 2}
   m_IsPrefabParent: 0

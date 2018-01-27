@@ -4,91 +4,236 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public 	float		speed;
-	private	float		localScaleX;
-	public	Animator	characterAnimator;
-	public 	Animation	walkAnimation;
+[Space(10)][Header("Scripts binding")]
+	public	GameManager			gameManager			;
+
+[Space(10)][Header("Objects bindings")]
+	public	Sprite				danceGauche_sprite	;
+	public	Sprite				danceHaut_sprite	;
+	public	Sprite				danceDroite_sprite	;
+
+	public	List<DanceMovement>	danceMovementsList	;
+	public	DanceMovement		activeDanceMovement	;
+
+	public	Animator			characterAnimator	;
+	public 	Animation			walkAnimation		;
+
+[Space(10)][Header("Usual variable")]
+	public 	float				speed				;
+	public	bool				isMovementOn		 = true;
+	private	float				localScaleX			;
 
 	void Start () 
 	{
 		characterAnimator = gameObject.GetComponent<Animator>();
 		localScaleX = transform.localScale.x;
+		gameManager = Camera.main.GetComponent<GameManager>();
 	}
 	
 	void Update () 
 	{
-		// MOVEMENT WITH AXIS
-		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		if (isMovementOn == true)
 		{
-			transform.Translate(new Vector3 (Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed * 0.70f, 0));
+		// | = = = MOVEMENT = = = |
+			// MOVEMENT WITH AXIS
+			if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+			{
+				transform.Translate(new Vector3 (Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed * 0.70f, 0));
+			}
+
+			// ANIMATION
+			if (Input.GetAxis("Horizontal") > 0)
+			{
+				transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
+				characterAnimator.SetBool("isWalkingRight?", true);
+			} else {
+				characterAnimator.SetBool("isWalkingRight?", false);
+			}
+			if (Input.GetAxis("Horizontal") < 0)
+			{
+				transform.localScale = new Vector2(localScaleX, transform.localScale.y);
+				characterAnimator.SetBool("isWalkingLeft?", true);
+			} else {
+				characterAnimator.SetBool("isWalkingLeft?", false);
+			}
+			if (Input.GetAxis("Vertical") > 0)
+			{
+				characterAnimator.SetBool("isWalkingUp?", true);
+			} else {
+				characterAnimator.SetBool("isWalkingUp?", false);
+			}
+			if (Input.GetAxis("Vertical") < 0)
+			{
+				characterAnimator.SetBool("isWalkingDown?", true);
+			} else {
+				characterAnimator.SetBool("isWalkingDown?", false);
+			}
 		}
 
-		// ANIMATION
-		if (Input.GetAxis("Horizontal") > 0)
-		{
-			transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
-			characterAnimator.SetBool("isWalkingRight?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingRight?", false);
-		}
-		if (Input.GetAxis("Horizontal") < 0)
-		{
-			transform.localScale = new Vector2(localScaleX, transform.localScale.y);
-			characterAnimator.SetBool("isWalkingLeft?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingLeft?", false);
-		}
-		if (Input.GetAxis("Vertical") > 0)
-		{
-			characterAnimator.SetBool("isWalkingUp?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingUp?", false);
-		}
-		if (Input.GetAxis("Vertical") < 0)
-		{
-			characterAnimator.SetBool("isWalkingDown?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingDown?", false);
-		}
-	
 
-		/*
-		// Movement
-		if (Input.GetKey(KeyCode.RightArrow))
+	// | === DANCE INPUTS === |
+
+		if (Input.GetKeyDown("joystick button 3") == true)
 		{
-			transform.Translate(new Vector3 (1 * speed, 0, 0));
-			transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
-			characterAnimator.SetBool("isWalkingRight?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingRight?", false);
-		}
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			transform.Translate(new Vector3 (-1 * speed, 0, 0));
-			characterAnimator.SetBool("isWalkingLeft?", true);
-			transform.localScale = new Vector2(localScaleX, transform.localScale.y);
-		} else {
-			characterAnimator.SetBool("isWalkingLeft?", false);
-		}
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			transform.Translate(new Vector3 (0, 1 * speed * 0.75f, 0));
-			characterAnimator.SetBool("isWalkingUp?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingUp?", false);
-		}
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			transform.Translate(new Vector3 (0, -1 * speed * 0.75f, 0));
-			characterAnimator.SetBool("isWalkingDown?", true);
-		} else {
-			characterAnimator.SetBool("isWalkingDown?", false);
+			// print("INPUT");
+			// print("Décalage : " + (beatInput));
+
+			// DECALAGE : PARFAIT
+			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+			{
+				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+				DoDanceUp();
+			} 
+			// DECALAGE : OK
+			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+			{
+				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+				DoDanceUp();
+			}
+			// DECALAGE : RATÉ
+			else
+			{
+				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+				ClearDanceMovement();
+			}
+
 		}
 
-		// Animation
+		if (Input.GetKeyDown("joystick button 2") == true)
+		{
+			// DECALAGE : PARFAIT
+			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+			{
+				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+				DoDanceLeft();
+			} 
+			// DECALAGE : OK
+			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+			{
+				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+				DoDanceLeft();
+			}
+			// DECALAGE : RATÉ
+			else
+			{
+				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+				ClearDanceMovement();
+			}
+		}
 
-		*/
 
+		if (Input.GetKeyDown("joystick button 1") == true)
+		{	
+			// DECALAGE : PARFAIT
+			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+			{
+				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+				DoDanceRight();
+			} 
+			// DECALAGE : OK
+			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+			{
+				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+				DoDanceRight();
+			}
+			// DECALAGE : RATÉ
+			else
+			{
+				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+				ClearDanceMovement();
+			}
+		}
+
+	// | === FIN DANCE INPUTS === |
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			// DEBUG
+			characterAnimator.SetBool("isDanceLeft?", false);
+			characterAnimator.SetBool("isDanceRight?", false);
+			characterAnimator.SetBool("isDanceUp?", false);
+			ClearDanceMovement();
+		}
+		
+	}
+
+	public void BlockMoveControl()
+	{
+		isMovementOn = false;
+		characterAnimator.SetBool("isWalkingLeft?", false);
+		characterAnimator.SetBool("isWalkingUp?", false);
+		characterAnimator.SetBool("isWalkingRight?", false);
+	}
+
+	public void ReleaseMoveControl()
+	{
+		isMovementOn = true;
+	}
+
+	public void AddDanceMovement()
+	{
+		danceMovementsList.Add(activeDanceMovement);
+	}
+
+	public void	ClearDanceMovement()
+	{
+		int countToClear = danceMovementsList.Count;
+		for (int i = 0; i < countToClear; i++)
+		{
+			danceMovementsList.Remove(danceMovementsList[0]);
+		}
+
+		characterAnimator.SetBool("isDanceUp?", false);
+		characterAnimator.SetBool("isDanceLeft?", false);
+		characterAnimator.SetBool("isDanceRight?", false);
+
+		ReleaseMoveControl();
+	}
+
+	public void ConstructRush()
+	{
+		print("rush.construct");
+	}
+
+	// DO DANCE
+
+	private void	DoDanceLeft()
+	{
+		BlockMoveControl();
+
+		activeDanceMovement = gameManager.danceMovements_library[2];
+		characterAnimator.SetBool("isDanceUp?", true);
+		characterAnimator.SetBool("isDanceLeft?", false);
+		characterAnimator.SetBool("isDanceRight?", false);
+		// print("Dance input 1");
+
+		AddDanceMovement();
+	}
+
+	private void	DoDanceUp()
+	{
+		BlockMoveControl();
+
+		activeDanceMovement = gameManager.danceMovements_library[0];
+		characterAnimator.SetBool("isDanceLeft?", true);
+		characterAnimator.SetBool("isDanceRight?", false);
+		characterAnimator.SetBool("isDanceUp?", false);
+		// print("Dance input 2");
+
+		AddDanceMovement();
+	}
+
+	private void	DoDanceRight()
+	{
+		BlockMoveControl();
+
+		activeDanceMovement = gameManager.danceMovements_library[1];
+		characterAnimator.SetBool("isDanceRight?", true);
+		characterAnimator.SetBool("isDanceLeft?", false);
+		characterAnimator.SetBool("isDanceUp?", false);
+		// print("Dance input 3");
+
+		AddDanceMovement();
 	}
 
 }
