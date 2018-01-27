@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 [Space(10)][Header("Scripts binding")]
 	public		GameManager			gameManager;
+	public		MusicRythm			rythmScript;
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject			player;

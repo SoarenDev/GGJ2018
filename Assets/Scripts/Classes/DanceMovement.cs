@@ -6,8 +6,6 @@ using UnityEngine;
 public class DanceMovement {
 
 	public	string		dance_name;
-[Tooltip("Attention : Utiliser la syntaxe exacte de Unity pour définir l'input !")]
-	public	string		dance_input;
 [Space(10)]
 	public	float		dance_power;
 	public	float		dance_speed;

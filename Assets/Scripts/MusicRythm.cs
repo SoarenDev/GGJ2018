@@ -49,28 +49,6 @@ public class MusicRythm : MonoBehaviour {
 
 	void Update () 
 	{
-		
-		// | = = = CHECK INPUT PAR RAPPORT AU BEAT = = = |
-
-		if (Input.GetKeyDown("joystick button 0") == true)
-		{
-			// print("INPUT");
-			// print("Décalage : " + (beatInput));
-			if (Mathf.Abs(beatInput) < beatInterval * (errorAccept/2))
-			{
-				// print("IsOk");
-				gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
-			} 
-			else if (Mathf.Abs(beatInput) < beatInterval * errorAccept)
-			{
-				// print("IsOk");
-				gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
-			}
-			else
-			{
-				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
-			}
-		}
 
 	}
 

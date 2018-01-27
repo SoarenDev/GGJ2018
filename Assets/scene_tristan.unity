@@ -287,33 +287,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  rythmScript: {fileID: 1738145787}
   player: {fileID: 0}
   screenFlashPrefab: {fileID: 1916082449573456, guid: 662ce75f50f06664bbd2499cde30c714,
     type: 2}
   test: 
   danceMovements_library:
-  - dance_name: 
-    dance_input: 
+  - dance_name: Dance_Gauche
     dance_power: 0
-    dance_speed: 0
+    dance_speed: 10
     dance_range: 0
-    dance_sprite: {fileID: 0}
+    dance_sprite: {fileID: 21300016, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
     dance_uiIndicator: {fileID: 0}
     dance_sound: {fileID: 0}
-  - dance_name: 
-    dance_input: 
+  - dance_name: Dance_Haut
     dance_power: 0
     dance_speed: 0
-    dance_range: 0
-    dance_sprite: {fileID: 0}
+    dance_range: 10
+    dance_sprite: {fileID: 21300034, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
     dance_uiIndicator: {fileID: 0}
     dance_sound: {fileID: 0}
-  - dance_name: 
-    dance_input: 
-    dance_power: 0
+  - dance_name: Dance_Droite
+    dance_power: 10
     dance_speed: 0
     dance_range: 0
-    dance_sprite: {fileID: 0}
+    dance_sprite: {fileID: 21300092, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
     dance_uiIndicator: {fileID: 0}
     dance_sound: {fileID: 0}
 --- !u!114 &1738145787
@@ -468,6 +466,11 @@ Prefab:
       propertyPath: characterAnimator
       value: 
       objectReference: {fileID: 528875944}
+    - target: {fileID: 114114557909780474, guid: fe8aedffa6d23724baa4a1b06fc81cb7,
+        type: 2}
+      propertyPath: isMovementOn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe8aedffa6d23724baa4a1b06fc81cb7, type: 2}
   m_IsPrefabParent: 0
