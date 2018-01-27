@@ -27,14 +27,14 @@ public class MusicRythm : MonoBehaviour {
 		// | = = = BEAT MANAGER = = = |
 
 		// Incrémentation de du compteur horloge
-		beatClock += 1.000f * Time.fixedDeltaTime;
-		beatInput += 1.000f * Time.fixedDeltaTime;
+		beatClock += 1.000f * Time.deltaTime;
+		beatInput += 1.000f * Time.deltaTime;
 
 		// Beat clock
 		if (beatClock > beatInterval)
 		{
 			// print("BEAT!");
-			// gameManager.DoScreenFlash(new Color(0.8f, 0.3f, 0.8f));
+			// gameManager.DoScreenFlash(new Color(0.6f, 0, 0.6f));
 			beatClock	= 0f;
 		}
 

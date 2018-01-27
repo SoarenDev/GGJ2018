@@ -331,7 +331,7 @@ MonoBehaviour:
   beatInterval: 0
   beatClock: 0
   beatInput: 0
-  errorAccept: 0.25
+  errorAccept: 0.3
 --- !u!82 &1738145788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: de053d37c1d38c54e9755ffd91cd280b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82c7b2c129be67d40bc200684c6f5b54, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
