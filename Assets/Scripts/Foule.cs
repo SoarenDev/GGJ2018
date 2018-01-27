@@ -62,6 +62,7 @@ public class Foule : MonoBehaviour {
 		nbDancer++;
 		generateSpawnPosition ();
 		GameObject dancerSpawned = Instantiate (Moogle, new Vector2(posX, posY), foule.rotation, foule.transform);
+		GameManager.instance.RegisterToPlayer (true, dancerSpawned);
 
 		//d = dancerSpawned.GetComponent<Dancer> ();
 		//d.foule = this;

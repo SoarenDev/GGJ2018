@@ -8,26 +8,22 @@ public class PlayerController : MonoBehaviour {
 	public	GameManager			gameManager			;
 
 [Space(10)][Header("Objects bindings")]
-	public	Sprite				danceGauche_sprite	;
-	public	Sprite				danceHaut_sprite	;
-	public	Sprite				danceDroite_sprite	;
-
 	public	List<DanceMovement>	danceMovementsList	;
 	public	DanceMovement		activeDanceMovement	;
 
-	public	Animator			characterAnimator	;
-	public 	Animation			walkAnimation		;
+	public	List<GameObject> 	dancerList;
 
 [Space(10)][Header("Usual variable")]
 	public 	float				speed				;
 	public	bool				isMovementOn		 = true;
+
 	private	float				localScaleX			;
+
 
 	void Start () 
 	{
-		characterAnimator = gameObject.GetComponent<Animator>();
+		gameManager = GameManager.instance;
 		localScaleX = transform.localScale.x;
-		gameManager = Camera.main.GetComponent<GameManager>();
 	}
 	
 	void Update () 
@@ -44,30 +40,47 @@ public class PlayerController : MonoBehaviour {
 			// ANIMATION
 			if (Input.GetAxis("Horizontal") > 0)
 			{
-				transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
-				characterAnimator.SetBool("isWalkingRight?", true);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList[i].GetComponent<Animator>().SetBool("isWalkingRight?", true);
+					dancerList[i].transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
+				}
 			} else {
-				characterAnimator.SetBool("isWalkingRight?", false);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList[i].GetComponent<Animator>().SetBool("isWalkingRight?", false);
+				}
 			}
 			if (Input.GetAxis("Horizontal") < 0)
 			{
-				transform.localScale = new Vector2(localScaleX, transform.localScale.y);
-				characterAnimator.SetBool("isWalkingLeft?", true);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].transform.localScale = new Vector2 (localScaleX, transform.localScale.y);
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingLeft?", true);
+				}
 			} else {
-				characterAnimator.SetBool("isWalkingLeft?", false);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingLeft?", false);
+				}
 			}
 			if (Input.GetAxis("Vertical") > 0)
 			{
-				characterAnimator.SetBool("isWalkingUp?", true);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingUp?", true);
+				}
 			} else {
-				characterAnimator.SetBool("isWalkingUp?", false);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingUp?", false);
+				}
 			}
 			if (Input.GetAxis("Vertical") < 0)
 			{
-				characterAnimator.SetBool("isWalkingDown?", true);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingDown?", true);
+				}
 			} else {
-				characterAnimator.SetBool("isWalkingDown?", false);
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingDown?", false);
+				}
 			}
+
 		}
 
 
@@ -149,9 +162,11 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			// DEBUG
-			characterAnimator.SetBool("isDanceLeft?", false);
-			characterAnimator.SetBool("isDanceRight?", false);
-			characterAnimator.SetBool("isDanceUp?", false);
+			for (int i = 0; i < dancerList.Count; i++) {
+				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+			}
 			ClearDanceMovement();
 		}
 		
@@ -160,9 +175,11 @@ public class PlayerController : MonoBehaviour {
 	public void BlockMoveControl()
 	{
 		isMovementOn = false;
-		characterAnimator.SetBool("isWalkingLeft?", false);
-		characterAnimator.SetBool("isWalkingUp?", false);
-		characterAnimator.SetBool("isWalkingRight?", false);
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingUp?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingRight?", false);
+		}
 	}
 
 	public void ReleaseMoveControl()
@@ -183,9 +200,11 @@ public class PlayerController : MonoBehaviour {
 			danceMovementsList.Remove(danceMovementsList[0]);
 		}
 
-		characterAnimator.SetBool("isDanceUp?", false);
-		characterAnimator.SetBool("isDanceLeft?", false);
-		characterAnimator.SetBool("isDanceRight?", false);
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+		}
 
 		ReleaseMoveControl();
 	}
@@ -202,9 +221,11 @@ public class PlayerController : MonoBehaviour {
 		BlockMoveControl();
 
 		activeDanceMovement = gameManager.danceMovements_library[2];
-		characterAnimator.SetBool("isDanceUp?", true);
-		characterAnimator.SetBool("isDanceLeft?", false);
-		characterAnimator.SetBool("isDanceRight?", false);
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", true);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+		}
 		// print("Dance input 1");
 
 		AddDanceMovement();
@@ -215,9 +236,11 @@ public class PlayerController : MonoBehaviour {
 		BlockMoveControl();
 
 		activeDanceMovement = gameManager.danceMovements_library[0];
-		characterAnimator.SetBool("isDanceLeft?", true);
-		characterAnimator.SetBool("isDanceRight?", false);
-		characterAnimator.SetBool("isDanceUp?", false);
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", true);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+		}
 		// print("Dance input 2");
 
 		AddDanceMovement();
@@ -228,10 +251,12 @@ public class PlayerController : MonoBehaviour {
 		BlockMoveControl();
 
 		activeDanceMovement = gameManager.danceMovements_library[1];
-		characterAnimator.SetBool("isDanceRight?", true);
-		characterAnimator.SetBool("isDanceLeft?", false);
-		characterAnimator.SetBool("isDanceUp?", false);
-		// print("Dance input 3");
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", true);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+		}
+			// print("Dance input 3");
 
 		AddDanceMovement();
 	}

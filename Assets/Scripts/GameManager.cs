@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager instance;
+
 [Space(10)][Header("Scripts binding")]
 	public		GameManager			gameManager;
 	public		MusicRythm			rythmScript;
+	public 		PlayerController 	p1;
+	public 		PlayerController 	p2;
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject			player;
@@ -18,8 +22,14 @@ public class GameManager : MonoBehaviour {
 [Space(10)][Header("References library")]
 	public		List<DanceMovement>	danceMovements_library;
 
+
     void Awake() 
 	{
+		if (instance == null) {
+			instance = this;
+		} else {
+			Destroy (this);
+		}
         Application.targetFrameRate = 60;
     }
 
@@ -43,4 +53,14 @@ public class GameManager : MonoBehaviour {
 		Destroy(instance, 1);
 	}
 
+	public void RegisterToPlayer(bool firstPlayer, GameObject dancer)
+	{
+		if (firstPlayer) {
+			p1.dancerList.Add(dancer);
+
+		} else {
+			//p2.dancerList.Add(dancer);
+
+		}
+	}
 }
