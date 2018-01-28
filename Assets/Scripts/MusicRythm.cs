@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicRythm : MonoBehaviour {
 
 	public 		GameManager		gameManager		;
+	public		GameObject		bouleDisco		;
 
 	public		float			bpm				;
 
@@ -35,6 +37,7 @@ public class MusicRythm : MonoBehaviour {
 		{
 			// print("BEAT!");
 			// gameManager.DoScreenFlash(new Color(0.6f, 0, 0.6f));
+			bouleDisco.GetComponent<BouleDisco>().BeatDisco();
 			beatClock	= 0f;
 		}
 

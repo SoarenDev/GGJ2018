@@ -23,7 +23,7 @@ public class Foule : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		GM.player.GetComponent<PlayerController> ().speed = 0.2f + (nbDancer * 0.0005f);
+		gameObject.GetComponent<PlayerController> ().speed = 0.2f + (nbDancer * 0.0005f);
 
 
 		if (Input.GetKey (KeyCode.Space))

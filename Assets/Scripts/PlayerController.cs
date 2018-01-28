@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		gameManager = GameManager.instance;
 		dashActionScript = gameObject.GetComponent<DashAction>();
-		localScaleX = transform.localScale.x;
+		localScaleX = gameObject.GetComponent<Foule>().Moogle.transform.localScale.x;
 	}
 	
 	void Update () 
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 			{
 				for (int i = 0; i < dancerList.Count; i++) {
 					dancerList[i].GetComponent<Animator>().SetBool("isWalkingRight?", true);
-					dancerList[i].transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
+					dancerList[i].transform.localScale = new Vector2(localScaleX, gameObject.GetComponent<Foule>().Moogle.transform.localScale.y);
 				}
 			} else {
 				for (int i = 0; i < dancerList.Count; i++) {
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetAxis("Horizontal") < 0)
 			{
 				for (int i = 0; i < dancerList.Count; i++) {
-					dancerList [i].transform.localScale = new Vector2 (localScaleX, transform.localScale.y);
+					dancerList [i].transform.localScale = new Vector2 (-localScaleX, gameObject.GetComponent<Foule>().Moogle.transform.localScale.y);
 					dancerList [i].GetComponent<Animator> ().SetBool ("isWalkingLeft?", true);
 				}
 			} else {

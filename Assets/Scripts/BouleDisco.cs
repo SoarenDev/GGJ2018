@@ -19,7 +19,7 @@ public class BouleDisco : MonoBehaviour {
 		
 	}
 
-	void BouledeDisco ()
+	public void BeatDisco ()
 	{
 		isSprite1 = !isSprite1;
 

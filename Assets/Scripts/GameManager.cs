@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
 	public 		Foule 				p2Foule;
 
 [Space(10)][Header("Objects bindings")]
-	public		GameObject			player;
 	public		GameObject			screenFlashPrefab;
 
 [Space(10)][Header("Usual variable")]
@@ -43,8 +42,6 @@ public class GameManager : MonoBehaviour {
 
 	void Start () 
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
-		
 	}
 
 	void Update () 
