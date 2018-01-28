@@ -96,5 +96,14 @@ public class DashAction : MonoBehaviour {
 		playerController.ReleaseRegularInputs();
 		playerController.ClearDanceMovement();
 	}
+
+	void OnColliderEnter2D(Collider2D col)
+	{
+		if (col.gameObject.tag == "Mur")
+		{
+			activeDash.dash_direction.x = -activeDash.dash_direction.x;
+			activeDash.dash_direction.y = -activeDash.dash_direction.y;
+		}
+	}
 	
 }

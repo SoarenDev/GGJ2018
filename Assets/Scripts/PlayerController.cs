@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour {
 
 		} // Fin regular input IF
 
+
 	} // Fin update
 
 	public void BlockMoveControl()
@@ -283,10 +284,10 @@ public class PlayerController : MonoBehaviour {
 	{
 		BlockMoveControl();
 
-		activeDanceMovement = gameManager.danceMovements_library[2];
+		activeDanceMovement = gameManager.danceMovements_library[0];
 		for (int i = 0; i < dancerList.Count; i++) {
-			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", true);
-			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", true);
 			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
 		}
 		// print("Dance input 1");
@@ -298,11 +299,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		BlockMoveControl();
 
-		activeDanceMovement = gameManager.danceMovements_library[0];
+		activeDanceMovement = gameManager.danceMovements_library[1];
 		for (int i = 0; i < dancerList.Count; i++) {
-			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", true);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
 			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
-			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", true);
 		}
 		// print("Dance input 2");
 
@@ -313,7 +314,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		BlockMoveControl();
 
-		activeDanceMovement = gameManager.danceMovements_library[1];
+		activeDanceMovement = gameManager.danceMovements_library[2];
 		for (int i = 0; i < dancerList.Count; i++) {
 			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", true);
 			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
