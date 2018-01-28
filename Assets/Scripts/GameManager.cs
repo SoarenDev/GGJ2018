@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 	private bool isMashing;
 	public float p1NbMash;
 	public float p2NbMash;
-	public float compteur;
+	public float compteur = 0;
 
 	public static GameManager instance;
 
@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour {
 
 	void Update () 
 	{
+
+		if(Input.GetKey(KeyCode.RightControl))
+			RemoveToPlayer(false, 20);
+
 		if (isMashing == true)
 			Mashing ();	
 	}
@@ -72,13 +76,33 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void Mashing(){
-		compteur += 1;
+	public void RemoveToPlayer(bool firstPlayer, int nbRemove)
+	{
+		for (int i = 0; i < nbRemove; i++) {
+			if (firstPlayer) {
+				Destroy (p1PlayerController.dancerList [p1PlayerController.dancerList.Count - 1]);
+				p1PlayerController.dancerList.Remove(p1PlayerController.dancerList [p1PlayerController.dancerList.Count - 1]);
+				p1Foule.nbDancer -= 1;
+				p1Foule.circleIncrease *= 1.005f;
+				p1Foule.GetComponent<CircleCollider2D> ().radius -= p1Foule.circleIncrease;
+				
+			} else {
+				//p2PlayerController.dancerList.Add(dancer);
 
-							if (Input.GetKeyDown (KeyCode.RightAlt)){
-			Debug.Log ("MASHED");
-			p1NbMash += 1;
+		}
+		}
+	}
+
+	public void Mashing(){
+		
+		if (compteur < 5f) {
+			compteur += Time.deltaTime;
+			if (Input.GetKeyDown (KeyCode.RightAlt)) {
+				Debug.Log (p1NbMash);
+				p1NbMash += 1;
 			}
+		} else
+			StopMash ();
 	}
 	public void StartMash(){
 		isMashing = true;

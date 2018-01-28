@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update () 
 	{
+		
+
 		if (isMovementOn == true)
 		{
 		// | = = = MOVEMENT = = = |
@@ -297,5 +299,4 @@ public class PlayerController : MonoBehaviour {
 
 		AddDanceMovement();
 	}
-
 }

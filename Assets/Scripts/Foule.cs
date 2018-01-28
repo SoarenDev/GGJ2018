@@ -10,10 +10,10 @@ public class Foule : MonoBehaviour {
 	public GameObject Moogle;
 	public Transform foule;
 
-	public int nbDancer = 0;
+	public int nbDancer = 100;
 	private float posX;
 	private float posY;
-	private float circleIncrease = 0.005f;
+	public float circleIncrease = 0.005f;
 
 	// Use this for initialization
 	void Start () {
@@ -34,20 +34,20 @@ public class Foule : MonoBehaviour {
 
 		switch(Random.Range(1,5)){
 		case 1:
-			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 7.5f), foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 10));
-			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 10), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 10));
+			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 0.5f), foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 3));
+			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 3), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 3));
 			break;
 		case 2:
-			posX = Random.Range (foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 7.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 10));
-			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 10), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 10));
+			posX = Random.Range (foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 0.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 3));
+			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 3), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 3));
 			break;
 		case 3:
-			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 7.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 10));
-			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 10), foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 10));
+			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 0.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 3));
+			posY = Random.Range (foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 3), foule.position.y - (foule.GetComponent<CircleCollider2D> ().radius * 3));
 			break;
 		case 4:
-			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 7.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 10));
-			posY = Random.Range (foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 10), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 10));
+			posX = Random.Range (foule.position.x - (foule.GetComponent<CircleCollider2D> ().radius * 0.5f), foule.position.x + (foule.GetComponent<CircleCollider2D> ().radius * 3));
+			posY = Random.Range (foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 3), foule.position.y + (foule.GetComponent<CircleCollider2D> ().radius * 3));
 			break;
 		}
 	}
