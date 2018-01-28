@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+
 	private bool isMashing;
 	public float p1NbMash;
 	public float p2NbMash;
-	public float compteur = 0;
+	public float compteur;
 
-	public static GameManager instance;
+
+	public static GameManager 		instance;
 
 [Space(10)][Header("Scripts binding")]
-	public		GameManager			gameManager;
 	public		MusicRythm			rythmScript;
 	public 		PlayerController 	p1PlayerController;
-	public 		Foule 	p1Foule;
+	public 		Foule 				p1Foule;
 	public 		PlayerController 	p2PlayerController;
-	public 		Foule 	p2Foule;
+	public 		Foule 				p2Foule;
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject			player;
@@ -49,8 +50,8 @@ public class GameManager : MonoBehaviour {
 	void Update () 
 	{
 
-		if(Input.GetKey(KeyCode.RightControl))
-			RemoveToPlayer(false, 20);
+		if(Input.GetKey(KeyCode.RightAlt))
+			RemoveToPlayer(true, 20);
 
 		if (isMashing == true)
 			Mashing ();	

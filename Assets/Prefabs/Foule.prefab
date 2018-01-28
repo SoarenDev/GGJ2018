@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4735575465181344}
   - component: {fileID: 58933863815957074}
   - component: {fileID: 114097458822768926}
+  - component: {fileID: 114840603954442086}
   - component: {fileID: 114009084967733920}
   m_Layer: 0
   m_Name: Foule
@@ -81,6 +82,8 @@ MonoBehaviour:
   dancerList: []
   speed: 0.2
   isMovementOn: 1
+  isRegularInputsOn: 1
+  isInMashButton: 0
 --- !u!114 &114097458822768926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,3 +98,15 @@ MonoBehaviour:
   GM: {fileID: 0}
   Moogle: {fileID: 1635709824506152, guid: fe8aedffa6d23724baa4a1b06fc81cb7, type: 2}
   foule: {fileID: 4735575465181344}
+  nbDancer: 0
+--- !u!114 &114840603954442086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636640049151394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0daffc212575a1d418bd83603944ff42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
