@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour {
 
 [Space(10)][Header("Usual variable")]
 	public 	float				speed				;
-	public	bool				isMovementOn		 = true;
+	public	bool				isMovementOn		= true;
+	public	bool				isRegularInputsOn	= true;
+	public	bool				isInMashButton		= false;
 
 	private	float				localScaleX			;
 
@@ -83,94 +85,97 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-
-	// | === DANCE INPUTS === |
-
-		if (Input.GetKeyDown("joystick button 3") == true)
+		if (isRegularInputsOn == false)
 		{
-			// print("INPUT");
-			// print("Décalage : " + (beatInput));
+			// | === DANCE INPUTS === |
 
-			// DECALAGE : PARFAIT
-			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+			if (Input.GetKeyDown("joystick button 3") == true)
 			{
-				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
-				DoDanceUp();
-			} 
-			// DECALAGE : OK
-			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
-			{
-				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
-				DoDanceUp();
+				// print("INPUT");
+				// print("Décalage : " + (beatInput));
+
+				// DECALAGE : PARFAIT
+				if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+				{
+					// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+					DoDanceUp();
+				} 
+				// DECALAGE : OK
+				else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+				{
+					// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+					DoDanceUp();
+				}
+				// DECALAGE : RATÉ
+				else
+				{
+					gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+					ClearDanceMovement();
+				}
+
 			}
-			// DECALAGE : RATÉ
-			else
+
+			if (Input.GetKeyDown("joystick button 2") == true)
 			{
-				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+				// DECALAGE : PARFAIT
+				if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+				{
+					// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+					DoDanceLeft();
+				} 
+				// DECALAGE : OK
+				else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+				{
+					// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+					DoDanceLeft();
+				}
+				// DECALAGE : RATÉ
+				else
+				{
+					gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+					ClearDanceMovement();
+				}
+			}
+
+
+			if (Input.GetKeyDown("joystick button 1") == true)
+			{	
+				// DECALAGE : PARFAIT
+				if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+				{
+					// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+					DoDanceRight();
+				} 
+				// DECALAGE : OK
+				else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+				{
+					// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+					DoDanceRight();
+				}
+				// DECALAGE : RATÉ
+				else
+				{
+					gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+					ClearDanceMovement();
+				}
+			}
+
+		// | === FIN DANCE INPUTS === |
+
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				// DEBUG
+				for (int i = 0; i < dancerList.Count; i++) {
+					dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+					dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+					dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+				}
 				ClearDanceMovement();
 			}
 
-		}
+		} // Fin regular input IF
 
-		if (Input.GetKeyDown("joystick button 2") == true)
-		{
-			// DECALAGE : PARFAIT
-			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
-			{
-				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
-				DoDanceLeft();
-			} 
-			// DECALAGE : OK
-			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
-			{
-				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
-				DoDanceLeft();
-			}
-			// DECALAGE : RATÉ
-			else
-			{
-				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
-				ClearDanceMovement();
-			}
-		}
-
-
-		if (Input.GetKeyDown("joystick button 1") == true)
-		{	
-			// DECALAGE : PARFAIT
-			if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
-			{
-				// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
-				DoDanceRight();
-			} 
-			// DECALAGE : OK
-			else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
-			{
-				// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
-				DoDanceRight();
-			}
-			// DECALAGE : RATÉ
-			else
-			{
-				gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
-				ClearDanceMovement();
-			}
-		}
-
-	// | === FIN DANCE INPUTS === |
-
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			// DEBUG
-			for (int i = 0; i < dancerList.Count; i++) {
-				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
-				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
-				dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
-			}
-			ClearDanceMovement();
-		}
-		
-	}
+	} // Fin update
 
 	public void BlockMoveControl()
 	{
@@ -185,6 +190,38 @@ public class PlayerController : MonoBehaviour {
 	public void ReleaseMoveControl()
 	{
 		isMovementOn = true;
+	}
+
+	public void BlockRegularInputs()
+	{
+		isRegularInputsOn = false;
+		
+		for (int i = 0; i < dancerList.Count; i++) {
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceLeft?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceUp?", false);
+			dancerList [i].GetComponent<Animator> ().SetBool ("isDanceRight?", false);
+		}
+	}
+
+	public void ReleaseRegularInputs()
+	{
+		isRegularInputsOn = true;
+	}
+
+	public void EnterMashupState()
+	{
+		isInMashButton = true;
+
+		BlockMoveControl();
+		BlockRegularInputs();
+	}
+
+	public void QuitMashupState()
+	{
+		isInMashButton = false;
+
+		ReleaseMoveControl();
+		ReleaseRegularInputs();
 	}
 
 	public void AddDanceMovement()
