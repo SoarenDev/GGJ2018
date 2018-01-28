@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	private bool isMashing;
+	public float p1NbMash;
+	public float p2NbMash;
+	public float compteur;
+
 	public static GameManager instance;
 
 [Space(10)][Header("Scripts binding")]
 	public		GameManager			gameManager;
 	public		MusicRythm			rythmScript;
-	public 		PlayerController 	p1;
-	public 		PlayerController 	p2;
+	public 		PlayerController 	p1PlayerController;
+	public 		Foule 	p1Foule;
+	public 		PlayerController 	p2PlayerController;
+	public 		Foule 	p2Foule;
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject			player;
@@ -41,7 +48,8 @@ public class GameManager : MonoBehaviour {
 
 	void Update () 
 	{
-		
+		if (isMashing == true)
+			Mashing ();	
 	}
 
 
@@ -56,11 +64,34 @@ public class GameManager : MonoBehaviour {
 	public void RegisterToPlayer(bool firstPlayer, GameObject dancer)
 	{
 		if (firstPlayer) {
-			p1.dancerList.Add(dancer);
+			p1PlayerController.dancerList.Add(dancer);
 
 		} else {
-			//p2.dancerList.Add(dancer);
+			//p2PlayerController.dancerList.Add(dancer);
 
 		}
 	}
+
+	public void Mashing(){
+		compteur += 1;
+
+							if (Input.GetKeyDown (KeyCode.RightAlt)){
+			Debug.Log ("MASHED");
+			p1NbMash += 1;
+			}
+	}
+	public void StartMash(){
+		isMashing = true;
+		p1NbMash = p1Foule.nbDancer;
+		//p2NbMash = p2Foule.nbDancer;
+
+		//stoper les mouvements et animations
+	}
+	public void StopMash (){
+		isMashing = false;
+		compteur = 0;
+
+		//free les mouvements et animations
+	}
+
 }

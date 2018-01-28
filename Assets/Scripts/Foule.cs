@@ -10,7 +10,7 @@ public class Foule : MonoBehaviour {
 	public GameObject Moogle;
 	public Transform foule;
 
-	private int nbDancer = 0;
+	public int nbDancer = 0;
 	private float posX;
 	private float posY;
 	private float circleIncrease = 0.005f;
