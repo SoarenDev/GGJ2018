@@ -9,61 +9,105 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1636640049151394}
+  m_RootGameObject: {fileID: 1898774802567884}
   m_IsPrefabParent: 1
---- !u!1 &1636640049151394
+--- !u!1 &1898774802567884
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4735575465181344}
-  - component: {fileID: 58933863815957074}
-  - component: {fileID: 114097458822768926}
-  - component: {fileID: 114840603954442086}
-  - component: {fileID: 114009084967733920}
+  - component: {fileID: 4890864161836056}
+  - component: {fileID: 58128159977123986}
+  - component: {fileID: 114780300179872068}
+  - component: {fileID: 114537316023239950}
+  - component: {fileID: 114777499159534548}
+  - component: {fileID: 50579256057615816}
   m_Layer: 0
-  m_Name: Foule
+  m_Name: Foule_player1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4735575465181344
+--- !u!4 &4890864161836056
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636640049151394}
+  m_GameObject: {fileID: 1898774802567884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9039148, y: 5.4847364, z: 10}
+  m_LocalPosition: {x: -25.8, y: 3.4, z: 1}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58933863815957074
+--- !u!50 &50579256057615816
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898774802567884}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!58 &58128159977123986
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636640049151394}
+  m_GameObject: {fileID: 1898774802567884}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114009084967733920
+--- !u!114 &114537316023239950
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636640049151394}
+  m_GameObject: {fileID: 1898774802567884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0daffc212575a1d418bd83603944ff42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  activeDash:
+    dash_power: 0
+    dash_speed: 0
+    dash_range: 0
+    dash_direction: {x: 0, y: 0}
+  GameManager: {fileID: 0}
+  isDashActive: 0
+  base_power: 10
+  base_speed: 3
+  base_range: 10
+  dashClock: 0
+--- !u!114 &114777499159534548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898774802567884}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5af6dff472919442b6ca8b0ad4165ad, type: 3}
@@ -85,12 +129,12 @@ MonoBehaviour:
   isMovementOn: 1
   isRegularInputsOn: 1
   isInMashButton: 0
---- !u!114 &114097458822768926
+--- !u!114 &114780300179872068
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636640049151394}
+  m_GameObject: {fileID: 1898774802567884}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efc481793588d8e48a4a0fa7a4e071fd, type: 3}
@@ -98,29 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
   Moogle: {fileID: 1635709824506152, guid: fe8aedffa6d23724baa4a1b06fc81cb7, type: 2}
-  foule: {fileID: 4735575465181344}
+  foule: {fileID: 4890864161836056}
   nbDancer: 0
   circleIncrease: 0.005
---- !u!114 &114840603954442086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1636640049151394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0daffc212575a1d418bd83603944ff42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  activeDash:
-    dash_power: 0
-    dash_speed: 0
-    dash_range: 0
-    dash_direction: {x: 0, y: 0}
-  GameManager: {fileID: 0}
-  isDashActive: 0
-  base_power: 0
-  base_speed: 0
-  base_range: 0
-  dashClock: 0

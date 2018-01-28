@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
 
-			if (Input.GetKeyDown("joystick button 1") == true)
+			if (Input.GetKeyDown("joystick 1 button 1") == true)
 			{	
 				// DECALAGE : PARFAIT
 				if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))

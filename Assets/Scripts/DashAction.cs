@@ -8,6 +8,9 @@ public class DashAction : MonoBehaviour {
 
 	public	DashComponent		activeDash			;
 
+	public GameManager 			GameManager			;
+	public Foule 				foule				;
+
 	public	bool				isDashActive		;
 
 	public	float				base_power			;
@@ -97,13 +100,17 @@ public class DashAction : MonoBehaviour {
 		playerController.ClearDanceMovement();
 	}
 
-	void OnColliderEnter2D(Collider2D col)
+	void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.gameObject.tag == "Mur")
-		{
-			activeDash.dash_direction.x = -activeDash.dash_direction.x;
-			activeDash.dash_direction.y = -activeDash.dash_direction.y;
+		if(col.gameObject.tag == "PNJ"){
+			Debug.Log ("PNJ ");
+			foule.SpawnDancer ();
+			Destroy (col.gameObject);
+		}
+		if(col.gameObject.tag == "CRS"){
+			Debug.Log ("CRS");
+			GameManager.RemoveToPlayer (true, 3);
+			//GameManager.StartMash ();
 		}
 	}
-	
 }
