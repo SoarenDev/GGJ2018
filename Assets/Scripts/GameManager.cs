@@ -74,10 +74,10 @@ public class GameManager : MonoBehaviour {
 	public void Mashing(){
 		compteur += 1;
 
-							if (Input.GetKeyDown (KeyCode.RightAlt)){
+		if (Input.GetKeyDown (KeyCode.RightAlt)){
 			Debug.Log ("MASHED");
 			p1NbMash += 1;
-			}
+		}
 	}
 	public void StartMash(){
 		isMashing = true;
