@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 [Space(10)][Header("Scripts binding")]
 	public	GameManager			gameManager			;
+	public	DashAction			dashActionScript	;
 
 [Space(10)][Header("Objects bindings")]
 	public	List<DanceMovement>	danceMovementsList	;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () 
 	{
 		gameManager = GameManager.instance;
+		dashActionScript = gameObject.GetComponent<DashAction>();
 		localScaleX = transform.localScale.x;
 	}
 	
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-		if (isRegularInputsOn == false)
+		if (isRegularInputsOn == true)
 		{
 			// | === DANCE INPUTS === |
 
@@ -161,6 +163,35 @@ public class PlayerController : MonoBehaviour {
 			}
 
 		// | === FIN DANCE INPUTS === |
+
+			if (Input.GetKeyDown("joystick button 5") == true)
+			{
+
+				if (danceMovementsList.Count >= 2 && danceMovementsList.Count <= 10)
+				{
+					// DECALAGE : PARFAIT
+					if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * (gameManager.rythmScript.errorAccept/2))
+					{
+						// gameManager.DoScreenFlash(new Color(0.8f, 0.1f, 0.8f));
+						dashActionScript.ConstructDash(1.2f);
+					} 
+					// DECALAGE : OK
+					else if (Mathf.Abs(gameManager.rythmScript.beatInput) < gameManager.rythmScript.beatInterval * gameManager.rythmScript.errorAccept)
+					{
+						// gameManager.DoScreenFlash(new Color(0, 0, 0.8f));
+						dashActionScript.ConstructDash(1f);
+					}
+					// DECALAGE : RATÉ
+					else
+					{
+						gameManager.DoScreenFlash(new Color(0.8f, 0, 0));
+						ClearDanceMovement();
+					}
+				} else {
+					print("Nombre de mouvements de dance invalide");
+					ClearDanceMovement();
+				}
+			}
 
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
@@ -244,11 +275,6 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		ReleaseMoveControl();
-	}
-
-	public void ConstructRush()
-	{
-		print("rush.construct");
 	}
 
 	// DO DANCE

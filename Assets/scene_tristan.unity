@@ -236,6 +236,30 @@ Prefab:
       propertyPath: GM
       value: 
       objectReference: {fileID: 1738145786}
+    - target: {fileID: 1636640049151394, guid: a81fa58f1a1d0d04ebd91c963ebf53c7, type: 2}
+      propertyPath: m_Name
+      value: Foule_player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114009084967733920, guid: a81fa58f1a1d0d04ebd91c963ebf53c7,
+        type: 2}
+      propertyPath: dashActionScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840603954442086, guid: a81fa58f1a1d0d04ebd91c963ebf53c7,
+        type: 2}
+      propertyPath: base_power
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840603954442086, guid: a81fa58f1a1d0d04ebd91c963ebf53c7,
+        type: 2}
+      propertyPath: base_speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840603954442086, guid: a81fa58f1a1d0d04ebd91c963ebf53c7,
+        type: 2}
+      propertyPath: base_range
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a81fa58f1a1d0d04ebd91c963ebf53c7, type: 2}
   m_IsPrefabParent: 0
@@ -354,7 +378,6 @@ MonoBehaviour:
   p1NbMash: 0
   p2NbMash: 0
   compteur: 0
-  gameManager: {fileID: 0}
   rythmScript: {fileID: 1738145787}
   p1PlayerController: {fileID: 462179311}
   p1Foule: {fileID: 462179312}
@@ -367,7 +390,7 @@ MonoBehaviour:
   danceMovements_library:
   - dance_name: Dance_Gauche
     dance_power: 0
-    dance_speed: 10
+    dance_speed: 1
     dance_range: 0
     dance_sprite: {fileID: 21300016, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
     dance_uiIndicator: {fileID: 0}
@@ -375,7 +398,7 @@ MonoBehaviour:
   - dance_name: Dance_Haut
     dance_power: 0
     dance_speed: 0
-    dance_range: 10
+    dance_range: 25
     dance_sprite: {fileID: 21300034, guid: 673905ffb4566f04f81023e2a0cffa6f, type: 3}
     dance_uiIndicator: {fileID: 0}
     dance_sound: {fileID: 0}
