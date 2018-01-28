@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour {
 [Space(10)][Header("Scripts binding")]
 	public		GameManager			gameManager;
 	public		MusicRythm			rythmScript;
-	public 		PlayerController 	p1;
-	public 		PlayerController 	p2;
+	public 		PlayerController 	p1PlayerController;
+	public 		Foule			 	p1Foule;
+	public 		PlayerController 	p2PlayerController;
+	public 		Foule			 	p2Foule;
 
 [Space(10)][Header("Objects bindings")]
 	public		GameObject			player;
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour {
 	public void RegisterToPlayer(bool firstPlayer, GameObject dancer)
 	{
 		if (firstPlayer) {
-			p1.dancerList.Add(dancer);
+			p1PlayerController.dancerList.Add(dancer);
 
 		} else {
 			//p2.dancerList.Add(dancer);
