@@ -69,7 +69,7 @@ public class DashAction : MonoBehaviour {
 		newDash.dash_direction = new Vector2 (h_direction * (1 / (Mathf.Abs(h_direction) + Mathf.Abs(v_direction))), v_direction * (1 / (Mathf.Abs(h_direction) + Mathf.Abs(v_direction))));
 		if (newDash.dash_direction == new Vector2 (0,0))
 		{
-			newDash.dash_direction = new Vector2 (1, 0);
+			newDash.dash_direction = new Vector2 (1, 0.01f);
 		}
 
 		// Transmission du composant Dash final
